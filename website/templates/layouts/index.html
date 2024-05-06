@@ -1,0 +1,57 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block body %}
+
+{% if user.is_authenticated %}
+    <table class="table table-hover table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Ph Num</th>
+          <th scope="col">Created At</th>      
+          <th scope="col">Address</th>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col">Zipcode</th>
+        </tr>
+      </thead>
+      {% if record %}
+      {% for i in record %}
+      <tbody>
+        <tr>
+          <td scope = "col"> <a href="{% url 'record' i.id %}">{{i.id}}</a></td>
+          <td scope = "col">{{i.first_name}} {{i.last_name}}</td>
+          <td scope = "col">{{i.email}}</td>
+          <td scope = "col">{{i.ph_num}}</td>
+          <td scope = "col">{{i.created_at}}</td>
+          <td scope = "col">{{i.address}}</td>
+          <td scope = "col">{{i.city}}</td>
+          <td scope = "col">{{i.state}}</td>
+          <td scope = "col">{{i.zipcode}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>  
+    </table>
+    {% endif %}
+    {% else  %} 
+<div class="col-md-6 offset-md-3">
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Username</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" placeholder="Username">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label" >Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endif %}
+{% endblock  %}
+

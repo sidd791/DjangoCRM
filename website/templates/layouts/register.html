@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block body %}
+<div class="col-md-6 offset-md-3">
+    <h1>Register</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            Error occured. Please check the credentials
+        </div>
+        {% for field in form %}
+        {% if field.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{field.errors}}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+            
+        {{form.as_p}}
+
+        <button type ="submit" class="btn btn-primary">Register</button>
+    </form>
+{% endblock %}

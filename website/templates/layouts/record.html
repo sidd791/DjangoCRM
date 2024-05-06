@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+{% block body %}
+
+<div class="card mb-3" style="width: 40rem; margin-top: 10px; margin-left:15rem; padding-left:20px">
+    <div class="card-body">
+      <h5 class="card-title">Customer : {{customer_record.first_name}} {{customer_record.last_name}}</h5>
+      <p class="card-text"><strong>Email : </strong>{{customer_record.email}}</p>
+      <p class="card-text"><strong>Ph Num : </strong>{{customer_record.ph_num}}</p>
+      <p class="card-text"><strong>Address : </strong>{{customer_record.address}}</p>
+      <p class="card-text"><strong>City : </strong>{{customer_record.city}}</p>
+      <p class="card-text"><strong>State : </strong>{{customer_record.state}}</p>
+      <p class="card-text"><strong>Zipcode : </strong>{{customer_record.zipcode}}</p>
+      <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+      <a href="{% url 'update' customer_record.id %}" class="btn btn-primary">Update</a>
+      <a href="{% url 'delete' customer_record.id %}" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+
+
+{% endblock  %}
